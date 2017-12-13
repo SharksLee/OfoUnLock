@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.graphics.ColorUtils;
 import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -26,8 +25,8 @@ public class OfoUnlockView extends View {
     //每个圆圈的周期
     public static final int LIFE_DURATION = 2000;
     //默认宽高
-    public static final int DEFAULT_WIDTH = 200;
-    public static final int DEFAULT_HEIGHT = 200;
+    public static final int DEFAULT_WIDTH = 600;
+    public static final int DEFAULT_HEIGHT =600;
 
     private final int STEP = 500;
     private
@@ -43,6 +42,7 @@ public class OfoUnlockView extends View {
     private int mWidth;
     private int mHeight;
     private int mProgress;
+    //是否结束绘制
     private boolean mIsRun = true;
     private ValueAnimator mValueAnimator = ValueAnimator.ofInt(0, 100);
     private float mBaseLine;
@@ -75,7 +75,7 @@ public class OfoUnlockView extends View {
             mWidth = specWidthSize;
         }
         if (specHeightMode == MeasureSpec.AT_MOST) {
-            //宽为wrap_content
+            //高为wrap_content
             mHeight = DEFAULT_HEIGHT;
         } else {
             mHeight = specHeightSize;
@@ -170,7 +170,7 @@ public class OfoUnlockView extends View {
         }
 
         public int getCurrentRadius() {
-            Log.e("getCurrentRadius", ((System.currentTimeMillis() - mCreateTime) % LIFE_DURATION * 1.0f / LIFE_DURATION * mMaxRadius) + "");
+            //通过取模运算实现半径以及颜色的变化
             float percent = (System.currentTimeMillis() - mCreateTime) % LIFE_DURATION * 1.0f / LIFE_DURATION;
             mColor = ColorUtils.setAlphaComponent(mCircleColor, (int) ((1 - percent) * 255));
             return (int) (percent * mMaxRadius);

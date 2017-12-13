@@ -8,8 +8,8 @@
     tools:context="com.example.administrator.ofounlock.MainActivity">
 
     <com.example.administrator.ofounlock.OfoUnlockView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="10dp"
         />
